@@ -25,8 +25,8 @@ let limitget = () => {
 }
 let limitLogin = () => {
     return rateLimit({
-        windowMs: 3000,
-        max: 3, // número máximo de solicitudes permitidas
+        windowMs: 5000,
+        max: 1, // número máximo de solicitudes permitidas
         statusCode: 429,
         // standardHeaders : true,
         // legacyHeaders : false,

@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors'
 import appLogin from './routers/login.js';
 import appUser from './routers/user.js';
-
+// import { generateToken } from './helpers/token.js';
 
 dotenv.config()
 
