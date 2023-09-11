@@ -1,4 +1,4 @@
-import {generateToken} from '../helpers/token.js'
+// import {generateToken} from '../helpers/token.js'
 import Routes from 'express';
 import routesVersioning  from 'express-routes-versioning';
 import { loginV1 } from '../version/v1/loginV1.js'
