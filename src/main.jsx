@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './components/App.jsx'
+// import App from './modules/home/components/App.jsx'
 import './assets/index.css'
-import Login from './components/Login';
+import App from './modules/home/routes/App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-    <Login />
-  </React.StrictMode>,
+  <>
+  <App />
+  </>
 )

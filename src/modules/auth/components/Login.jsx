@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
+import { useNavigate} from 'react-router-dom';
+import { Menu } from '../../../shared/Menu';
+import Skeleton from '../../../shared/Skeleton';
+
+
+
 
 export default function Login() {
-    let [ROL, getRol] = useState('');
-    let [ROL_EMAIL, getMail] = useState('');
-    let [ROL_PASSWORD, getCon] = useState('');
-    let [token, setToken] = useState(''); // Nuevo estado para el token
+    const navigate = useNavigate();
+
+    let [ROL, getRol] = useState('admin');
+    let [ROL_EMAIL, getMail] = useState('CJimenez21@example.com');
+    let [ROL_PASSWORD, getCon] = useState('admin2');
+    let [token, setToken] = useState('');
+    let [isLoading, setIsLoading] = useState(false);
 
 const login = async () => {
+    setIsLoading(true);
     try {
         let header = new Headers();
         header.set('Content-Type', 'application/json');
@@ -25,13 +35,17 @@ const login = async () => {
         const data = await response.json();
         setToken(data.Token);
         console.log(data);
-    } catch (error) {
-        console.error(error);
-    }
-};
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
 return (
 <div>
+    <Menu />
+    <br /><br />
     <input
         type="text"
         value={ROL}
@@ -52,9 +66,13 @@ return (
     />
 
     <br />
-    <button value="login" onClick={login}>
+    <br />
+    <button value="login" onClick={login}
+        // navigate('/Continuacion')
+    >
         ENVIAR
     </button>
+    {isLoading && <Skeleton />}
 
 </div>
 );

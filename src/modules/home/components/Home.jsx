@@ -1,11 +1,15 @@
-import reactLogo from '../assets/react.svg'
+import reactLogo from '@/assets/react.svg'
 import viteLogo from '/vite.svg'
-import '../assets/css/App.css'
+import '@/assets/css/App.css'
+import { Menu } from '../../../shared/Menu';
+
 
 function App() {
 
   return (
     <>
+      <Menu />
+    <br /><br />
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
