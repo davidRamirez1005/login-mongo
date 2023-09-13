@@ -1,7 +1,7 @@
 import {Router} from 'express'
 import { rateLimit } from 'express-rate-limit';
 import {limitLogin} from '../../config/configLimit.js'
-import {generateToken} from '../../helpers/token.js'
+import {generateToken} from '../../Auth/token.js'
 
 const loginV1 = Router();
 
@@ -15,4 +15,3 @@ loginV1.use(
 )
 
 export {loginV1}
-

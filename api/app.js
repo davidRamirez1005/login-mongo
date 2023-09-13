@@ -2,9 +2,14 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors'
 import appLogin from './routers/login.js';
-import appUser from './routers/user.js';
-// import { generateToken } from './helpers/token.js';
-
+import appTask from './routers/taskRouter.js' 
+import appReview from './routers/reviewRouter.js';
+import appCategory from './routers/categoryRouter.js';
+import appShopkeeper from './routers/shopkeeperRouter.js';
+import appUser from './routers/userRouter.js';
+import appPayment from './routers/paymentRouter.js';
+import passport from './Auth/passport.js';
+import { validatePermissions } from './Auth/permissions.js';
 dotenv.config()
 
 const appExpress = express();
@@ -22,7 +27,15 @@ const corsOptions = {
 appExpress.use(cors(corsOptions));
 
 appExpress.use('/login', appLogin);
-appExpress.use('/user', appUser);
+
+appExpress.use('/task', passport.authenticate('bearer', { session: false }),validatePermissions, appTask);
+appExpress.use('/review', passport.authenticate('bearer', { session: false }),validatePermissions, appReview);
+appExpress.use('/category', passport.authenticate('bearer', { session: false }),validatePermissions, appCategory);
+appExpress.use('/shopkeeper', passport.authenticate('bearer', { session: false }),validatePermissions, appShopkeeper);
+appExpress.use('/user', passport.authenticate('bearer', { session: false }),validatePermissions, appUser);
+appExpress.use('/payment', passport.authenticate('bearer', { session: false }),validatePermissions, appPayment);
+
+
 
 
 

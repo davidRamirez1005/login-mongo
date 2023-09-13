@@ -2,19 +2,30 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../../auth/components/Login';
 import NotFound from '../../auth/components/NotFound';
 import Home from '../components/Home';
-import Continuacion from '../../pages/Continuacion';
+import Profile from '../../pages/Profile';
+import { AuthProvider, AuthRoute } from '../../auth/context/auth'
 
 
 function Navegation() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Continuacion" element={<Continuacion />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Login" element={<Login />} />
+              {/* <Route path="/Profile" element={<Profile />} /> */}
+              <Route
+              path="/Profile"
+              element={
+                <AuthRoute>
+                  <Profile />
+                </AuthRoute>
+              }
+            />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthProvider>
       </BrowserRouter>
     </>
   );

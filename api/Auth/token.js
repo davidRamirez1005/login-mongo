@@ -1,6 +1,6 @@
 import genCollection from "../helpers/db.js";
 import { SignJWT, jwtVerify } from "jose";
-import { validationLogin } from "../validation/validation.js";
+import { validationLogin } from "../validator/validaciones.js";
 import { validationResult } from 'express-validator';
 
 

@@ -1,7 +1,7 @@
 // import {generateToken} from '../helpers/token.js'
 import Routes from 'express';
 import routesVersioning  from 'express-routes-versioning';
-import { loginV1 } from '../version/v1/loginV1.js'
+import { loginV1 } from '../controllers/v1/loginV1.js'
 
 const appLogin = Routes();
 const version = routesVersioning();
