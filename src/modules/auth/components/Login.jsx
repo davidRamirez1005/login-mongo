@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import { Menu } from '../../../shared/Menu';
 import Skeleton from '../../../shared/Skeleton';
-
+import { useAuth } from '../context/auth';
 
 
 
 export default function Login() {
     const navigate = useNavigate();
+    const auth = useAuth();
 
     let [ROL, getRol] = useState('admin');
     let [ROL_EMAIL, getMail] = useState('CJimenez21@example.com');
@@ -35,13 +36,23 @@ const login = async () => {
         const data = await response.json();
         setToken(data.Token);
         console.log(data);
+        
+
+        if (!data.Token) {
+            alert('Verifica los datos ingresados');
+        } else {
+            auth.logins({ username: ROL_EMAIL });
+            navigate('/Profile');
+        }
         } catch (error) {
-            console.error(error);
+            error
         } finally {
             setIsLoading(false);
         }
     };
-
+    // if (!auth.user) {
+    //     return <Navigate to='/Login' />
+    // }
 return (
 <div>
     <Menu />
@@ -67,9 +78,7 @@ return (
 
     <br />
     <br />
-    <button value="login" onClick={login}
-        // navigate('/Continuacion')
-    >
+    <button value="login" onClick={login} >
         ENVIAR
     </button>
     {isLoading && <Skeleton />}
