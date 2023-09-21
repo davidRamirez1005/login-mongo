@@ -1,12 +1,12 @@
-import dotenv from "dotenv";
 import {MongoClient} from "mongodb"
+import {loadEnv} from 'vite'
+const env = loadEnv('development', process.cwd(), "ATLAS");
 
-dotenv.config("../src/");
 
-console.log(process.env.ATLAS_USER);
+
 export async function con(){
     try {
-        const URI = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@cluster0.b0o2rzg.mongodb.net/${process.env.ATLAS_DB}`;
+        const URI = `mongodb+srv://${env.ATLAS_USER}:${env.ATLAS_PASSWORD}@cluster0.b0o2rzg.mongodb.net/${env.ATLAS_DB}`;
         // console.log(URI);
         const options = {
             useNewUrlParser: true,
